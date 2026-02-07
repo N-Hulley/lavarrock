@@ -1,0 +1,89 @@
+/*
+ * lavarrock.ui — Design Token CSS Variables
+ *
+ * These CSS custom properties define the design system tokens used by all
+ * UI components. They are consumed via Tailwind's `hsl(var(--<token>))` pattern.
+ *
+ * The host application (or a theme plugin) is responsible for setting concrete
+ * values on :root. These are sensible defaults for a dark theme.
+ */
+
+:root {
+  /* ─── Colour primitives ────────────────────────── */
+  --background: 224 12% 10%;
+  --foreground: 210 20% 92%;
+
+  --card: 224 12% 12%;
+  --card-foreground: 210 20% 92%;
+
+  --popover: 224 12% 12%;
+  --popover-foreground: 210 20% 92%;
+
+  --primary: 210 100% 52%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 224 12% 16%;
+  --secondary-foreground: 210 20% 92%;
+
+  --muted: 224 12% 18%;
+  --muted-foreground: 215 14% 55%;
+
+  --accent: 224 12% 20%;
+  --accent-foreground: 210 20% 92%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* ─── Functional tokens ────────────────────────── */
+  --border: 224 12% 18%;
+  --input: 224 12% 18%;
+  --input-foreground: 210 20% 92%;
+  --ring: 210 100% 52%;
+
+  /* ─── Layout tokens ────────────────────────────── */
+  --tablist: 224 12% 8%;
+  --tab-icon: 215 14% 55%;
+  --tab-icon-active: 210 20% 92%;
+
+  /* ─── Radius ───────────────────────────────────── */
+  --radius: 0.5rem;
+}
+
+/*
+ * Animation keyframes used by Radix UI primitives via Tailwind.
+ * These power the animate-in / animate-out classes on overlays,
+ * dropdown menus, dialogs, etc.
+ */
+@keyframes enter {
+  from {
+    opacity: var(--tw-enter-opacity, 1);
+    transform: translate3d(
+        var(--tw-enter-translate-x, 0),
+        var(--tw-enter-translate-y, 0),
+        0
+      )
+      scale3d(
+        var(--tw-enter-scale, 1),
+        var(--tw-enter-scale, 1),
+        var(--tw-enter-scale, 1)
+      )
+      rotate(var(--tw-enter-rotate, 0));
+  }
+}
+
+@keyframes exit {
+  to {
+    opacity: var(--tw-exit-opacity, 1);
+    transform: translate3d(
+        var(--tw-exit-translate-x, 0),
+        var(--tw-exit-translate-y, 0),
+        0
+      )
+      scale3d(
+        var(--tw-exit-scale, 1),
+        var(--tw-exit-scale, 1),
+        var(--tw-exit-scale, 1)
+      )
+      rotate(var(--tw-exit-rotate, 0));
+  }
+}

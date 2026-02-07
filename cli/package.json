@@ -1,0 +1,32 @@
+{
+  "name": "@lavarrock/cli",
+  "version": "0.1.0",
+  "description": "CLI toolkit for creating, managing, and validating Lavarrock plugins",
+  "type": "module",
+  "bin": {
+    "lavarrock": "./bin/lavarrock.mjs"
+  },
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node --loader ts-node/esm src/index.ts"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "inquirer": "^9.2.12",
+    "chalk": "^5.3.0",
+    "ora": "^8.0.1",
+    "fast-glob": "^3.3.2",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

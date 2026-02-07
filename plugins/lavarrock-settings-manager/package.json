@@ -1,0 +1,17 @@
+{
+  "name": "@lavarrock/plugin-settings-manager",
+  "version": "1.0.0",
+  "private": true,
+  "lavarrock": {
+    "pluginId": "lavarrock.settings-manager"
+  },
+  "dependencies": {
+    "@lavarrock/ui": "workspace:*",
+    "@lavarrock/plugin-settings-engine": "workspace:*"
+  },
+  "devDependencies": {
+    "react": "^19",
+    "react-dom": "^19",
+    "lucide-react": "^0.511.0"
+  }
+}

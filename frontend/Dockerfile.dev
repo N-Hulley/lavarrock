@@ -1,0 +1,30 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Ensure modern npm with workspace protocol support
+RUN npm install -g npm@latest
+
+# Copy workspace package files (frontend only — no plugins/packages needed)
+COPY package*.json ./
+COPY frontend/package*.json ./frontend/
+
+# Create stub workspace dirs so npm doesn't complain about missing workspaces
+# (The root package.json lists workspaces but we only need the frontend)
+RUN mkdir -p packages/ui packages/lavarrock-link plugins/lavarrock-wm \
+    plugins/lavarrock-header plugins/lavarrock-footer plugins/lavarrock-json-tool \
+    plugins/lavarrock-tooltips plugins/lavarrock-ui cli registry && \
+    for d in packages/ui packages/lavarrock-link plugins/lavarrock-wm \
+             plugins/lavarrock-header plugins/lavarrock-footer plugins/lavarrock-json-tool \
+             plugins/lavarrock-tooltips plugins/lavarrock-ui cli registry; do \
+      echo '{"name":"stub-'$(basename $d)'","version":"0.0.0","private":true}' > $d/package.json; \
+    done
+
+# Install dependencies (workspace-aware)
+RUN npm install --legacy-peer-deps
+
+# Expose port
+EXPOSE 5173
+
+# Run dev server
+CMD ["npm", "run", "dev", "-w", "frontend"]

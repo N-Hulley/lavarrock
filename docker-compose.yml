@@ -1,0 +1,66 @@
+services:
+  # Backend service (Python/FastAPI)
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: lavarrock-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./.lavarrock:/root/.lavarrock
+    environment:
+      - PYTHONUNBUFFERED=1
+      - OLLAMA_HOST=http://192.168.0.191:8280
+    depends_on:
+      - db
+    command: python -m uvicorn lavarrock.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # SQLite database (can be replaced with PostgreSQL)
+  db:
+    image: nouchka/sqlite3:latest
+    container_name: lavarrock-db
+    volumes:
+      - db_data:/root/db
+    environment:
+      - SQLITE_DB=/root/db/lavarrock.db
+
+  # Plugin registry — builds and serves plugin bundles
+  registry:
+    build:
+      context: .
+      dockerfile: registry/Dockerfile
+    container_name: lavarrock-registry
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+
+  # Frontend service (Node.js/Vite)
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.dev
+    container_name: lavarrock-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app/frontend
+      - /app/node_modules
+      - /app/frontend/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:8000
+      - VITE_REGISTRY_URL=http://localhost:3001
+    depends_on:
+      - backend
+      - registry
+    command: sh -c "npm install --legacy-peer-deps && npm run dev -w frontend"
+
+volumes:
+  ollama_data:
+  db_data:
+
+networks:
+  default:
+    name: lavarrock-network

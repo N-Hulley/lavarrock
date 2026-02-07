@@ -1,0 +1,12 @@
+{
+  "name": "@lavarrock/plugin-settings-engine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Extensible settings engine — plugins register settings schemas with typed fields, the engine manages values, persistence, and field type extensibility",
+  "lavarrock": {
+    "pluginId": "lavarrock.settings-engine"
+  },
+  "dependencies": {
+    "react": "workspace:*"
+  }
+}

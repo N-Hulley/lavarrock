@@ -1,0 +1,18 @@
+/* ─── WM Plugin Styles ─────────────────────────────
+ * CSS custom properties for the tiling window manager.
+ * These can be overridden by themes or other plugins.
+ */
+
+:root {
+  /* Gap between tiled panes — delegates to layout engine */
+  --wm-gap: var(--panel-gap, 4px);
+
+  /* Animation duration for tile transitions (matches settings.animationDuration default) */
+  --wm-animation-duration: 150ms;
+
+  /* Focused tile border highlight */
+  --wm-focus-border: hsl(var(--tab-icon-active) / 0.4);
+  --wm-focus-ring: hsl(var(--tab-icon-active) / 0.15);
+  --wm-focus-title-bg: hsl(var(--tab-icon-active) / 0.06);
+  --wm-focus-title-border: hsl(var(--tab-icon-active) / 0.2);
+}

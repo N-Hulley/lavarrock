@@ -1,0 +1,32 @@
+{
+  "name": "lavarrock",
+  "version": "0.1.0",
+  "description": "Self-hosted Obsidian-style AI copilot editor",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "frontend",
+    "packages/*",
+    "plugins/*",
+    "cli",
+    "registry"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w frontend\" \"cd backend && python -m uvicorn app.main:app --reload\"",
+    "build": "npm run build -w frontend && cd backend && pip install -e .",
+    "test": "npm run test -w frontend && cd backend && pytest",
+    "lint": "npm run lint -w frontend && cd backend && ruff check .",
+    "format": "npm run format -w frontend && cd backend && ruff format .",
+    "type-check": "npm run type-check -w frontend && cd backend && mypy .",
+    "clean": "npm run clean -w frontend && rm -rf backend/build backend/dist backend/.eggs *.egg-info .pytest_cache"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@tailwindcss/vite": "^4.1.18",
+    "concurrently": "^8.2.2",
+    "tailwindcss": "^4.1.18"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

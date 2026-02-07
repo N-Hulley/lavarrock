@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "ignoreDeprecations": "6.0",
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@lavarrock/ui": ["../../packages/ui/src/index.ts"],
+      "@lavarrock/plugin-settings-engine": [
+        "../lavarrock-settings-engine/src/index.ts"
+      ]
+    }
+  },
+  "include": ["src"]
+}
